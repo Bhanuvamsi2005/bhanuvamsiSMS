@@ -1,0 +1,99 @@
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 20px;
+            background: linear-gradient(135deg, #1d2b64, #f8cdda);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+            color: #ffffff;
+        }
+
+        .login-container h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Styling for the form inputs */
+        .login-container form input[type="text"],
+        .login-container form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover and focus effects */
+        .login-container form input[type="text"]:focus,
+        .login-container form input[type="password"]:focus {
+            border-color: #0dcaf0;
+            box-shadow: 0 0 5px #0dcaf0;
+            outline: none;
+        }
+
+        /* Styling for the submit button */
+        .login-container form input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #0dcaf0;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-container form input[type="submit"]:hover {
+            background-color: #0bb5e0;
+            transform: scale(1.05);
+        }
+
+        .login-container form input[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            .login-container {
+                padding: 15px;
+            }
+            .login-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="{% url 'UserLoginLogic' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}
+</body>
+</html>
